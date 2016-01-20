@@ -1,0 +1,24 @@
+<html>
+<body style="font-family: Tahoma;font-size:12px">
+<div style="margin-left:10px">
+<h2>TreeDB Jetty Server - Quick Reference Guide</h2>
+
+<br>
+<img src="$server.png$">
+<p>All the necessary parameters will be immediately be set from the start. The demo databases incorporate no administrative users. You can still login to the TreeDB demo databases with the predefined admin user name:  <span style="font-family: courier new,courier;">admin</span> with 
+the password <span style="font-family: courier new,courier;">admin</span>.</p>
+<p>Aided by the <em>Start Server</em>  prompt, you can start the web server. The start process lasts 30 - 90 seconds, depending on the efficiency of your system.  Diverse messages will be displayed in the message window during the initialising phase. When the initialising phase has ended the prompt <em>Open Browser</em>  will be displayed, able to be activated.  This prompt opens the TreeDB system in your system's regular browser. The server URL is also available in the field of the same name. If you alter any standard parameters, you can save these by utilising the <em>Save Config</em> prompt. </p>
+<p>A brief explanation of the rest of the input elements:</p>
+<ul>
+<li>The <em>Server IP</em>  options list designates which IP address the server will be connected to. The server seeks out all available IP4 addresses as a standard procedure.</li>
+<li>The input field of <em>HTTP Port</em>  defines the port address with the standard value of 8080.</li>
+<li>The <em>Context</em>  input field defines the servlet context.</li>
+<li>The <em>Persistence Layer</em>  list of options allows the choice between using EclispeLink (JPA<) or Hibernate as a persistence framework to be made. </li>
+<li>The <em>Database list of options </em> supports the following databases: H2, MySQL and Postgres. H2 is the standard variable in usage as an easy to implement file based SQL database. The designated database with its corresponding access permissions defined through the user, must be enabled for MySQL and Postgres.</li>
+<li>The <em>DDL </em>(<span style="text-decoration: underline;">D</span>ata <span style="text-decoration: underline;">D</span>efinition <span style="text-decoration: underline;">L</span>anguage) options list defines how the persistence framework interacts with the database schema:<br /><span style="font-family: courier new,courier;">VALIDATE</span> validates only the existing database schema without any modifications.<br /><span style="font-family: courier new,courier;">UPDATE</span> actualises the existing database schema. If there is currently no database schema in use, a new database schema and its designated database will be newly enabled.<br /><span style="font-family: courier new,courier;">CREATE</span> sets up a new database schema and deletes all existing data. After restarting your server, the <span style="font-family: courier new,courier;">UPDATE</span> variable should have been modified!</li>
+<li>The input fields <em>Database User and</em> <em>Password</em>  define the access permission data for the database. The password for the database is <span style="font-family: courier new,courier;">db</span>.</li>
+<li>The input fields TreeDB<em> Admin</em> and <em>Password</em> define the administrative access. The password for admin acess is <span style="font-family: courier new,courier;">admin</span>.</li>
+</ul>
+</div>
+</body>
+</html>
