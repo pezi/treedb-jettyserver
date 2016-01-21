@@ -38,44 +38,43 @@ import javax.swing.event.HyperlinkListener;
 
 @SuppressWarnings("serial")
 public class HelpWindow extends JFrame {
-	public HelpWindow(String icon,String title, String html, String... images) {
-		super(title);
-		
-		if(icon != null) {
-			ArrayList<Image> iconList = new ArrayList<Image>();
-			iconList.add(new ImageIcon(getClass().getResource("/images/" + icon)).getImage());
-			setIconImages(iconList);
-		}
-		
-		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		String htmlStr = null;
-		try {
-			InputStream in = getClass().getResourceAsStream("/html/" + html); 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			String line;
-			StringBuffer b = new StringBuffer();
-			while ((line = reader.readLine()) != null) {
-			    b.append(line);
-			    b.append('\n');
-			}
-			htmlStr = b.toString();
-			for (String img : images) {
-				String imgPath = getClass().getResource("/images/" + img).toString();
-				htmlStr = htmlStr.replace("$" + img +"$", imgPath);
-			}
-		} catch (Exception ex) {
-			// TODO Auto-generated catch block
-			ex.printStackTrace();
-		}
-		// Set up the content pane.
-		JTextPane htmlPane = new  JTextPane();
-		htmlPane.setContentType("text/html");
-		htmlPane.setText(htmlStr);
-		htmlPane.setCaretPosition(0);
-		htmlPane.addHyperlinkListener(new HyperlinkListener() {
+    public HelpWindow(String icon,String title, String html, String... images) {
+        super(title);
+        
+        if(icon != null) {
+            ArrayList<Image> iconList = new ArrayList<Image>();
+            iconList.add(new ImageIcon(getClass().getResource("/images/" + icon)).getImage());
+            setIconImages(iconList);
+        }
+        
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        String htmlStr = null;
+        try {
+            InputStream in = getClass().getResourceAsStream("/html/" + html); 
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            String line;
+            StringBuffer b = new StringBuffer();
+            while ((line = reader.readLine()) != null) {
+                b.append(line);
+                b.append('\n');
+            }
+            htmlStr = b.toString();
+            for (String img : images) {
+                String imgPath = getClass().getResource("/images/" + img).toString();
+                htmlStr = htmlStr.replace("$" + img +"$", imgPath);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        // Set up the content pane.
+        JTextPane htmlPane = new  JTextPane();
+        htmlPane.setContentType("text/html");
+        htmlPane.setText(htmlStr);
+        htmlPane.setCaretPosition(0);
+        htmlPane.addHyperlinkListener(new HyperlinkListener() {
              @Override
              public void hyperlinkUpdate(HyperlinkEvent hle) {
-            	 System.out.println("hello");
+                 System.out.println("hello");
                  if (HyperlinkEvent.EventType.ACTIVATED.equals(hle.getEventType())) {
                      System.out.println(hle.getURL());
                      Desktop desktop = Desktop.getDesktop();
@@ -88,9 +87,9 @@ public class HelpWindow extends JFrame {
              }
          });
 
-		this.getContentPane().add(new JScrollPane(htmlPane));
-		pack();
-		setResizable(true);
-		setVisible(true);
-	}
+        this.getContentPane().add(new JScrollPane(htmlPane));
+        pack();
+        setResizable(true);
+        setVisible(true);
+    }
 }
