@@ -187,8 +187,8 @@ public class JettyServer extends JFrame {
                     Runtime.getRuntime().addShutdownHook(jvmShutdownHook);
                     JettyServer frame = new JettyServer();
                     frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (Exception e) {                   
+                    new HelpWindow("error.png","Stacktrace", e);
                 }
             }
         });
@@ -470,7 +470,7 @@ public class JettyServer extends JFrame {
         
         // set dock icon Mac
         if(System.getProperty("os.name").indexOf("Mac") >= 0) {
-            Image treeIcon = new ImageIcon(getClass().getResource("/images/TreeDB2.png")).getImage();
+            Image treeIcon = new ImageIcon(getClass().getResource("/images/TreeDBtransparent.png")).getImage();
             Application application = Application.getApplication();
             application.setDockIconImage(treeIcon);
         }
@@ -863,15 +863,14 @@ public class JettyServer extends JFrame {
         mainMenu = new JMenu("Help");
         menuBar.add(mainMenu);
 
-        //
         menuHelp = new JMenuItem("Help");
-        menuHelp.setIcon(new ImageIcon(JettyServer.class.getResource("/images/questionmark.png")));
+        menuHelp.setIcon(new ImageIcon(JettyServer.class.getResource("/images/help.png")));
         mainMenu.add(menuHelp);
         menuHelp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (help == null) {
-                    help = new HelpWindow("questionmark.png", "Help", "help.html", "server.png");
+                    help = new HelpWindow("help.png", "Help", "help.html", "server.png");
                     help.setSize(700, 430);
                 } else {
                     if (!help.isVisible()) {
@@ -884,13 +883,13 @@ public class JettyServer extends JFrame {
         });
 
         JMenuItem menuAbout = new JMenuItem("About");
-        menuAbout.setIcon(new ImageIcon(JettyServer.class.getResource("/images/info.png")));
+        menuAbout.setIcon(new ImageIcon(JettyServer.class.getResource("/images/about.png")));
         mainMenu.add(menuAbout);
         menuAbout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (about == null) {
-                    about = new HelpWindow("info.png", "About", "about.html", "TreeDB.png");
+                    about = new HelpWindow("about.png", "About", "about.html", "TreeDB.png");
                     about.setSize(270, 285);
                 } else {
                     if (!about.isVisible()) {
