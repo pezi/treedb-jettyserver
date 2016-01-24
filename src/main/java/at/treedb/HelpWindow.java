@@ -90,7 +90,6 @@ public class HelpWindow extends JFrame {
             iconList.add(new ImageIcon(getClass().getResource("/images/" + icon)).getImage());
             setIconImages(iconList);
         }
-        
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         // set up the content pane.
         JTextPane htmlPane = new  JTextPane();
@@ -110,7 +109,7 @@ public class HelpWindow extends JFrame {
                  }
              }
          });
-
+        
         this.getContentPane().add(new JScrollPane(htmlPane));
         pack();
         setResizable(true);

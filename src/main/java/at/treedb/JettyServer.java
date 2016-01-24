@@ -187,7 +187,8 @@ public class JettyServer extends JFrame {
                     Runtime.getRuntime().addShutdownHook(jvmShutdownHook);
                     JettyServer frame = new JettyServer();
                     frame.setVisible(true);
-                } catch (Exception e) {                   
+                } catch (Exception e) {      
+                    e.printStackTrace();
                     new HelpWindow("error.png","Stacktrace", e);
                 }
             }
@@ -706,151 +707,132 @@ public class JettyServer extends JFrame {
         });
 
         GroupLayout groupLayout = new GroupLayout(getContentPane());
-        groupLayout
-                .setHorizontalGroup(
-                        groupLayout
-                                .createParallelGroup(
-                                        Alignment.LEADING)
-                                .addGroup(
-                                        groupLayout.createSequentialGroup().addContainerGap()
-                                                .addGroup(
-                                                        groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                .addGroup(
-                                                                        groupLayout.createSequentialGroup()
-                                                                                .addGroup(groupLayout
-                                                                                        .createParallelGroup(
-                                                                                                Alignment.LEADING)
-                                                                                        .addComponent(startServer)
-                                                                                        .addComponent(lblWarFile)
-                                                                                        .addComponent(lblJdbcUrl)
-                                                                                        .addComponent(lblServerUrl)
-                                                                                        .addComponent(lblDatabaseUser)
-                                                                                        .addComponent(lblTreedbAdmin)
-                                                                                        .addComponent(lblServerIp)
-                                                                                        .addComponent(
-                                                                                                lblPersistenceLayer))
-                                .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+        groupLayout.setHorizontalGroup(
+            groupLayout.createParallelGroup(Alignment.LEADING)
+                .addGroup(groupLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                        .addGroup(groupLayout.createSequentialGroup()
+                            .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                .addComponent(startServer)
+                                .addComponent(lblWarFile)
+                                .addComponent(lblJdbcUrl)
+                                .addComponent(lblServerUrl)
+                                .addComponent(lblDatabaseUser)
+                                .addComponent(lblTreedbAdmin)
+                                .addComponent(lblServerIp)
+                                .addComponent(lblPersistenceLayer))
+                            .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addComponent(stopServer)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(openBrowser)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(save))
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+                                        .addComponent(dbUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(treedbAdmin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                    .addGap(14)
+                                    .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
                                         .addGroup(groupLayout.createSequentialGroup()
-                                                .addComponent(persistenceLayerList, GroupLayout.PREFERRED_SIZE,
-                                                        GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                .addGap(14).addComponent(lblDatabase)
-                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                .addComponent(databaseList, GroupLayout.PREFERRED_SIZE, 59,
-                                                        GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(ComponentPlacement.RELATED).addComponent(lblDdl)
-                                        .addPreferredGap(ComponentPlacement.RELATED).addComponent(ddl,
-                                                GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                                GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(groupLayout.createSequentialGroup().addComponent(stopServer)
-                                                .addPreferredGap(ComponentPlacement.RELATED).addComponent(openBrowser)
-                                                .addPreferredGap(ComponentPlacement.RELATED).addComponent(save))
-                                        .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-                                                .addGroup(groupLayout.createSequentialGroup().addGroup(groupLayout
-                                                        .createParallelGroup(Alignment.LEADING)
-                                                        .addComponent(dbUser, GroupLayout.PREFERRED_SIZE,
-                                                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(treedbAdmin, GroupLayout.PREFERRED_SIZE,
-                                                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                                                        .addGap(14).addGroup(
-                                                                groupLayout.createParallelGroup(Alignment.LEADING)
-                                                                        .addGroup(groupLayout.createSequentialGroup()
-                                                                                .addComponent(lblPassword)
-                                                                                .addPreferredGap(
-                                                                                        ComponentPlacement.RELATED)
-                                                                        .addComponent(treedbAdminPwd,
-                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                GroupLayout.DEFAULT_SIZE,
-                                                                                GroupLayout.PREFERRED_SIZE))
-                                                                .addGroup(groupLayout.createSequentialGroup()
-                                                                        .addComponent(lblPasswordl)
-                                                                        .addPreferredGap(ComponentPlacement.RELATED)
-                                                                        .addComponent(dbUserPwd,
-                                                                                GroupLayout.PREFERRED_SIZE,
-                                                                                GroupLayout.DEFAULT_SIZE,
-                                                                                GroupLayout.PREFERRED_SIZE)
-                                                                        .addPreferredGap(ComponentPlacement.RELATED,
-                                                                                GroupLayout.DEFAULT_SIZE,
-                                                                                Short.MAX_VALUE)
-                                                                        .addComponent(uiLook))))
-                                                .addGroup(Alignment.LEADING, groupLayout
-                                                        .createParallelGroup(Alignment.LEADING, false)
-                                                        .addComponent(serverURL).addComponent(jdbcURL)
-                                                        .addGroup(groupLayout.createSequentialGroup()
-                                                                .addComponent(warPath, GroupLayout.PREFERRED_SIZE, 341,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addComponent(selectWAR))
-                                                        .addGroup(groupLayout.createSequentialGroup()
-                                                                .addComponent(ip4List, GroupLayout.PREFERRED_SIZE, 97,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                .addComponent(lblHttpPport)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addComponent(httpPort, GroupLayout.PREFERRED_SIZE, 50,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)
-                                                                .addComponent(lblNewLabel)
-                                                                .addPreferredGap(ComponentPlacement.UNRELATED)
-                                                                .addComponent(context, GroupLayout.PREFERRED_SIZE,
-                                                                        GroupLayout.DEFAULT_SIZE,
-                                                                        GroupLayout.PREFERRED_SIZE)
-                                                                .addPreferredGap(ComponentPlacement.RELATED)))))
-                                .addGap(155)).addGroup(
-                                        groupLayout.createSequentialGroup()
-                                                .addComponent(scrollPaneLog, GroupLayout.PREFERRED_SIZE, 575,
-                                                        GroupLayout.PREFERRED_SIZE)
-                                                .addContainerGap(22, Short.MAX_VALUE)))));
-        groupLayout.setVerticalGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                .addGroup(groupLayout.createSequentialGroup().addContainerGap()
-                        .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblWarFile)
-                                .addComponent(warPath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                        GroupLayout.PREFERRED_SIZE)
-                                .addComponent(selectWAR))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblServerIp)
+                                            .addComponent(lblPassword)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(treedbAdminPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(groupLayout.createSequentialGroup()
+                                            .addComponent(lblPasswordl)
+                                            .addPreferredGap(ComponentPlacement.RELATED)
+                                            .addComponent(dbUserPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(uiLook))))
+                                .addComponent(jdbcURL)
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addComponent(warPath, GroupLayout.PREFERRED_SIZE, 341, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(selectWAR))
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addComponent(ip4List, GroupLayout.PREFERRED_SIZE, 97, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(ComponentPlacement.UNRELATED)
+                                    .addComponent(lblHttpPport)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(httpPort, GroupLayout.PREFERRED_SIZE, 50, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(lblNewLabel)
+                                    .addPreferredGap(ComponentPlacement.UNRELATED)
+                                    .addComponent(context, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(ComponentPlacement.RELATED))
+                                .addGroup(groupLayout.createSequentialGroup()
+                                    .addComponent(persistenceLayerList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10)
+                                    .addComponent(lblDatabase)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(databaseList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                                    .addGap(10)
+                                    .addComponent(lblDdl)
+                                    .addPreferredGap(ComponentPlacement.RELATED)
+                                    .addComponent(ddl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                .addComponent(serverURL, 303, 303, 303))
+                            .addGap(157))
+                        .addGroup(groupLayout.createSequentialGroup()
+                            .addComponent(scrollPaneLog, GroupLayout.PREFERRED_SIZE, 575, GroupLayout.PREFERRED_SIZE)
+                            .addContainerGap(22, Short.MAX_VALUE))))
+        );
+        groupLayout.setVerticalGroup(
+            groupLayout.createParallelGroup(Alignment.LEADING)
+                .addGroup(groupLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblWarFile)
+                        .addComponent(warPath, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(selectWAR))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblServerIp)
                         .addComponent(lblHttpPport)
-                        .addComponent(httpPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ip4List, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblNewLabel).addComponent(context, GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblServerUrl).addComponent(
-                        serverURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblPersistenceLayer)
-                        .addComponent(persistenceLayerList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ddl, GroupLayout.PREFERRED_SIZE, 17, GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDdl)
-                        .addComponent(databaseList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDatabase))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblJdbcUrl).addComponent(
-                        jdbcURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblDatabaseUser)
-                        .addComponent(dbUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
+                        .addComponent(httpPort, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ip4List, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblNewLabel)
+                        .addComponent(context, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblServerUrl)
+                        .addComponent(serverURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblPersistenceLayer)
+                        .addComponent(persistenceLayerList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(databaseList, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDatabase)
+                        .addComponent(ddl, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDdl))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblJdbcUrl)
+                        .addComponent(jdbcURL, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblDatabaseUser)
+                        .addComponent(dbUser, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblPasswordl)
-                        .addComponent(dbUserPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
+                        .addComponent(dbUserPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                         .addComponent(uiLook))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(lblTreedbAdmin)
-                        .addComponent(treedbAdmin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                                GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblPassword).addComponent(treedbAdminPwd, GroupLayout.PREFERRED_SIZE,
-                                GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE).addComponent(startServer)
-                        .addComponent(stopServer).addComponent(openBrowser).addComponent(save))
-                .addPreferredGap(ComponentPlacement.RELATED)
-                .addComponent(scrollPaneLog, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE)));
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(lblTreedbAdmin)
+                        .addComponent(treedbAdmin, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblPassword)
+                        .addComponent(treedbAdminPwd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+                        .addComponent(startServer)
+                        .addComponent(stopServer)
+                        .addComponent(openBrowser)
+                        .addComponent(save))
+                    .addPreferredGap(ComponentPlacement.RELATED)
+                    .addComponent(scrollPaneLog, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         logArea = new JTextArea();
         scrollPaneLog.setViewportView(logArea);
